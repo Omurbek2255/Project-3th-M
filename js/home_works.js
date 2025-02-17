@@ -18,29 +18,192 @@ gmailButton.onclick = () =>{
 
 
 
+// const parentBlock = document.querySelector('.parent_block')
+// const childBlock = document.querySelector('.child_block')
+// // let posBlockL = 0
+// // let posBlockT = 0
+
+
+
+
+// const offsetWidth = parentBlock.clientWidth - childBlock.clientWidth - 1;
+// const offsetHeight = parentBlock.clientHeight - childBlock.clientHeight - 1;
+// // const offsetWidthUp = 0
+
+
+
+
+// // let posBlockY = parentBlock.clientWidth - childBlock.clientWidth;
+// // console.log(posBlockY);
+
+
+
+// let posBlockR = offsetWidth
+// let posBlockB = offsetHeight
+
+// let direction = 'right'
+
+// const myFunk = () => {
+
+//     if (direction === 'right') {
+//         if (posBlockL <= offsetWidth) {
+//             posBlockL++
+//             childBlock.style.left = `${posBlockL}px`
+//             requestAnimationFrame(myFunk)
+//         } else {
+//              direction = 'down'
+//         }
+//     }
+//     if (direction === 'down') {
+//         if(posBlockT <= offsetHeight){
+//             posBlockT++
+//             childBlock.style.top = `${posBlockT}px`
+//             requestAnimationFrame(myFunk)
+//         } else{
+//             direction = 'left'
+//         }
+//     }
+//     if (direction ==='left') {
+//         if (posBlockR > 0) {
+//             posBlockR--
+//             console.log(posBlockR);
+//             childBlock.style.left = `${posBlockR}px`
+//         requestAnimationFrame(myFunk)
+//         } else{
+//             direction = 'top'
+//         }
+//     }
+//     if (direction === 'top') {
+//         if (posBlockB > 0) {
+//             posBlockB--
+//             childBlock.style.top = `${posBlockB}px`
+//             requestAnimationFrame(myFunk)
+//         } else {
+//             direction = 'right'
+//             console.log(direction);
+            
+//         }
+//     }
+
+
+
+
+
+
+//     // } else if (posBlockT < Y) {
+//     //     posBlockT++
+//     //     childBlock.style.top = `${posBlockT}px`
+//     //     requestAnimationFrame(myFunk)
+//     // }
+//     // else if (posBlockY >= 0) {
+//     //     posBlockY--
+//     //     console.log(posBlockY);
+//     //     childBlock.style.left = `${Y}px`
+//     //     requestAnimationFrame(myFunk)
+//     // } else if (posBlockB > 0) {
+//     //     posBlockB--
+//     //     childBlock.style.top = `${posBlockB}px`
+//     //     console.log(posBlockB);
+        
+//     //     requestAnimationFrame(myFunk)
+//     // } else if (posBlockB == 0) {
+//     //     location.reload()
+//     // }
+
+// }
+
+
+// myFunk()
+
+
+
+
 const parentBlock = document.querySelector('.parent_block')
 const childBlock = document.querySelector('.child_block')
-let posBlock = 0
 
-const myFunk = (e,y) => {
-    posBlock++
-    console.log(posBlock);
-    childBlock.style.left = `${posBlock}px`
-    if (posBlock <= 446) {
-        myFunk()
+
+
+
+const offsetWidth = parentBlock.clientWidth - childBlock.clientWidth - 1;
+const offsetHeight = parentBlock.clientHeight - childBlock.clientHeight - 1;
+
+let posX = 0, posY = 0;
+const step = 2;
+let direction = 'right';
+
+const myFunk = () => {
+    if (direction === 'right') {
+        if (posX < offsetWidth) {
+            posX += step;
+        } else { 
+            direction = 'down';
+        }
     }
+    
+    if (direction === 'down') {
+        if (posY < offsetHeight) {
+            posY += step;
+        } else {
+            direction = 'left';
+        }
+    }
+    
+    if (direction === 'left') {
+        if (posX > 0) {
+            posX -= step;
+        } else {
+            direction = 'up';
+        }
+    }
+    
+    if (direction === 'up') {
+        if (posY > 0) {
+            posY -= step;
+        } else {
+            direction = 'right';
+        }
+    }
+    
+    childBlock.style.left = `${posX}px`;
+    childBlock.style.top = `${posY}px`;
+    
+    requestAnimationFrame(myFunk);
+};
+
+myFunk();
 
 
-    // e++
-    // console.log(e);
-    // y.style.left = `${e}px`
-    // if (e <= 446) {
-    //     myFunk()
-    // }
-    // Я не понял почему этот код не работает?
+
+
+
+
+const secondsBlock = document.querySelector('#seconds')
+const startButton = document.querySelector('#start')
+const stopButton = document.querySelector('#stop')
+const resetButton = document.querySelector('#reset')
+
+let interval = null
+let seconds = 0
+
+startButton.onclick = () =>{
+    if (interval === null) {
+            interval = setInterval(() => {
+                seconds++
+                secondsBlock.innerHTML = seconds
+            }, 1000);
+    }
 }
 
+stopButton.onclick = () =>{
+    if (interval !== null) {
+        clearInterval(interval)
+        interval === null
+    }
+}
 
-myFunk(posBlock, childBlock)
-
-
+resetButton.onclick = () =>{
+    clearInterval(interval)
+    seconds = 0
+    secondsBlock.innerHTML = seconds
+    interval = null
+}

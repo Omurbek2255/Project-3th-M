@@ -207,3 +207,50 @@ resetButton.onclick = () =>{
     secondsBlock.innerHTML = seconds
     interval = null
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// hw-4
+
+const charList = document.querySelector('.characters-list')
+
+const renderChar = () =>{
+    const reqest = new XMLHttpRequest()
+    reqest.open('GET', '../data/data.json')
+    reqest.setRequestHeader('Content-type', 'application/json')
+    reqest.send()
+
+    reqest.onload = () =>{
+        const data = JSON.parse(reqest.response)
+        console.log(data);
+        
+        data.forEach(item => {
+            const charBlock = document.createElement('div')
+            charBlock.classList.add('character-card')
+
+            charBlock.innerHTML = `
+                <div class="character-photo">
+                    <img src="${item.photo}" alt="${item.name}}">
+                </div>
+                <h2>${item.name}</h2>
+                <h4>${item.age}</h4>
+
+            `
+
+            charList.appendChild(charBlock)
+        });
+    }
+}
+
+renderChar()    

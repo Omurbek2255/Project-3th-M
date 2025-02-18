@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Bruse Wayne",
+        "age": "34",
+        "photo":"https://i.pinimg.com/736x/e0/04/4e/e0044e471a717bbe16b1ba35c3257563.jpg"
+    },
+    {
+        "name": "Alfred Pennyworth",
+        "age": 70,
+        "photo":"https://static.wikia.nocookie.net/dark-knight-trilogy/images/8/89/Alfred.jpg/revision/latest?cb=20201115090750"
+    },
+    {
+        "name": "Tomas Wayne",
+        "age": "35",
+        "photo":"https://static.wikia.nocookie.net/batman/images/2/2d/Bb_049LinusRoache.jpg/revision/latest?cb=20120621025804&path-prefix=es"
+    },
+    {
+        "name": "Martha Wayne",
+        "age": "33",
+        "photo":"https://static.wikia.nocookie.net/the-batman-universe/images/2/2b/Martha_Wayne-Photo.png/revision/latest?cb=20220314184724"
+    }
+]

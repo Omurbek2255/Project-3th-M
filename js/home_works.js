@@ -206,6 +206,8 @@ resetButton.onclick = () =>{
     seconds = 0
     secondsBlock.innerHTML = seconds
     interval = null
+    console.log(interval);
+    
 }
 
 

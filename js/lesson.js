@@ -90,3 +90,92 @@ converter(eurInput, usdInput, somInput)
 // }
 
 
+
+
+
+
+
+
+
+
+
+
+
+// SWITCH
+// DZ-6
+
+
+const nurdinNext = document.querySelector('#btn-next')
+const nurdinPrev = document.querySelector('#btn-prev')
+const nurdinBlock = document.querySelector('.card')
+
+
+
+
+
+
+let cardId = 1
+
+const NurdinFunc = (elementClick) =>{
+
+
+    elementClick.onclick = () =>{
+        if (elementClick.id === 'btn-next') {
+            if (cardId === 20) {
+                cardId = 0
+            }
+            if (cardId <= 19) {
+                cardId++
+                console.log(cardId);
+
+                nurdinRender()
+
+            } 
+        }
+        if (elementClick.id === 'btn-prev') {
+            if (cardId === 1) {
+                cardId = 21
+            }
+            if (cardId != 0) {
+                cardId--
+                console.log(cardId);
+
+                nurdinRender()
+
+            }
+        }
+    }
+
+    
+    const nurdinRender  = () =>{
+        fetch(`https://jsonplaceholder.typicode.com/todos/${cardId}`)
+        .then(response => response.json())
+        .then(data => {
+            nurdinBlock.innerHTML = `
+                <p>${data.title}</p>
+                <p>${data.completed}</p>
+                <span>${data.id}</span>
+            `
+        })
+    }
+
+    nurdinRender()
+}
+
+
+NurdinFunc(nurdinNext)
+NurdinFunc(nurdinPrev)
+
+
+
+
+const renderPostsNurdin = () =>{
+    
+    fetch(`https://jsonplaceholder.typicode.com/posts`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+}
+
+renderPostsNurdin()

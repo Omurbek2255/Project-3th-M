@@ -114,17 +114,17 @@ const nurdinBlock = document.querySelector('.card')
 
 
 
-let cardId = 1
+let cardId = 199
 
 const NurdinFunc = (elementClick) =>{
 
 
     elementClick.onclick = () =>{
         if (elementClick.id === 'btn-next') {
-            if (cardId === 20) {
+            if (cardId === 200) {
                 cardId = 0
             }
-            if (cardId <= 19) {
+            if (cardId <= 199) {
                 cardId++
                 console.log(cardId);
 
@@ -134,7 +134,7 @@ const NurdinFunc = (elementClick) =>{
         }
         if (elementClick.id === 'btn-prev') {
             if (cardId === 1) {
-                cardId = 21
+                cardId = 201
             }
             if (cardId != 0) {
                 cardId--

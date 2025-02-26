@@ -16,108 +16,6 @@ gmailButton.onclick = () =>{
 
 
 
-
-
-// const parentBlock = document.querySelector('.parent_block')
-// const childBlock = document.querySelector('.child_block')
-// // let posBlockL = 0
-// // let posBlockT = 0
-
-
-
-
-// const offsetWidth = parentBlock.clientWidth - childBlock.clientWidth - 1;
-// const offsetHeight = parentBlock.clientHeight - childBlock.clientHeight - 1;
-// // const offsetWidthUp = 0
-
-
-
-
-// // let posBlockY = parentBlock.clientWidth - childBlock.clientWidth;
-// // console.log(posBlockY);
-
-
-
-// let posBlockR = offsetWidth
-// let posBlockB = offsetHeight
-
-// let direction = 'right'
-
-// const myFunk = () => {
-
-//     if (direction === 'right') {
-//         if (posBlockL <= offsetWidth) {
-//             posBlockL++
-//             childBlock.style.left = `${posBlockL}px`
-//             requestAnimationFrame(myFunk)
-//         } else {
-//              direction = 'down'
-//         }
-//     }
-//     if (direction === 'down') {
-//         if(posBlockT <= offsetHeight){
-//             posBlockT++
-//             childBlock.style.top = `${posBlockT}px`
-//             requestAnimationFrame(myFunk)
-//         } else{
-//             direction = 'left'
-//         }
-//     }
-//     if (direction ==='left') {
-//         if (posBlockR > 0) {
-//             posBlockR--
-//             console.log(posBlockR);
-//             childBlock.style.left = `${posBlockR}px`
-//         requestAnimationFrame(myFunk)
-//         } else{
-//             direction = 'top'
-//         }
-//     }
-//     if (direction === 'top') {
-//         if (posBlockB > 0) {
-//             posBlockB--
-//             childBlock.style.top = `${posBlockB}px`
-//             requestAnimationFrame(myFunk)
-//         } else {
-//             direction = 'right'
-//             console.log(direction);
-            
-//         }
-//     }
-
-
-
-
-
-
-//     // } else if (posBlockT < Y) {
-//     //     posBlockT++
-//     //     childBlock.style.top = `${posBlockT}px`
-//     //     requestAnimationFrame(myFunk)
-//     // }
-//     // else if (posBlockY >= 0) {
-//     //     posBlockY--
-//     //     console.log(posBlockY);
-//     //     childBlock.style.left = `${Y}px`
-//     //     requestAnimationFrame(myFunk)
-//     // } else if (posBlockB > 0) {
-//     //     posBlockB--
-//     //     childBlock.style.top = `${posBlockB}px`
-//     //     console.log(posBlockB);
-        
-//     //     requestAnimationFrame(myFunk)
-//     // } else if (posBlockB == 0) {
-//     //     location.reload()
-//     // }
-
-// }
-
-
-// myFunk()
-
-
-
-
 const parentBlock = document.querySelector('.parent_block')
 const childBlock = document.querySelector('.child_block')
 
@@ -238,11 +136,12 @@ const renderChar = () =>{
         console.log(data);
         
         data.forEach(item => {
+            
             const charBlock = document.createElement('div')
             charBlock.classList.add('character-card')
 
             charBlock.innerHTML = `
-                <div class="character-photo">
+                <div class=" character-photo">
                     <img src="${item.photo}" alt="${item.name}}">
                 </div>
                 <h2>${item.name}</h2>

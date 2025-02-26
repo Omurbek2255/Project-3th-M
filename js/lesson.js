@@ -4,7 +4,7 @@ const phoneResult = document.querySelector('#phone_result')
 
 const regExp = /^\+996 [2579]\d{2} \d{2}-\d{2}-\d{2}$/
 
-// const regExp = /^[a-z0-9.]+@gmail.com$/;
+
 
 phoneButton.onclick = () =>{
     if(regExp.test(phoneInput.value)){
@@ -65,41 +65,6 @@ converter(somInput, usdInput, eurInput )
 converter(usdInput, somInput, eurInput)
 converter(eurInput, usdInput, somInput)
 
-// somInput.oninput = () =>{
-//     const request = new XMLHttpRequest();
-//     request.open("GET", '../data/converter.json')
-//     request.setRequestHeader('Content-type', 'application/json')
-//     request.send()
-
-//     request.onload = () =>{
-//         const data = JSON.parse(request.response)
-//         usdInput.value = (somInput.value / data.usd).toFixed(2)
-//     }
-// }
-
-// usdInput.oninput = () =>{
-//     const request = new XMLHttpRequest();
-//     request.open("GET", '../data/converter.json')
-//     request.setRequestHeader('Content-type', 'application/json')
-//     request.send()
-
-//     request.onload = () =>{
-//         const data = JSON.parse(request.response)
-//         somInput.value = (usdInput.value * data.usd).toFixed(2)
-//     }
-// }
-
-
-
-
-
-
-
-
-
-
-
-
 
 // SWITCH
 // DZ-6
@@ -147,16 +112,19 @@ const NurdinFunc = (elementClick) =>{
     }
 
     
-    const nurdinRender  = () =>{
-        fetch(`https://jsonplaceholder.typicode.com/todos/${cardId}`)
-        .then(response => response.json())
-        .then(data => {
+    const nurdinRender  =  async () =>{
+        try{
+            const response  = await fetch(`https://jsonplaceholder.typicode.com/todos/${cardId}`)
+            const data = await response.json()
             nurdinBlock.innerHTML = `
                 <p>${data.title}</p>
                 <p>${data.completed}</p>
                 <span>${data.id}</span>
             `
-        })
+        } catch(e){
+            console.log(e);
+            
+        }
     }
 
     nurdinRender()
@@ -169,13 +137,65 @@ NurdinFunc(nurdinPrev)
 
 
 
-const renderPostsNurdin = () =>{
-    
-    fetch(`https://jsonplaceholder.typicode.com/posts`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
+
+const renderPostsNurdin = async () =>{
+    try{
+        const response  = await fetch(`https://jsonplaceholder.typicode.com/posts`)
+        const data = await response.json()
+        console.log(data);
+    } catch(e){
+        console.log(e);
+        
+    }
 }
 
 renderPostsNurdin()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const searchInput = document.querySelector('.cityName')
+const searchButton = document.querySelector('#search')
+const city = document.querySelector('.city')
+const temp = document.querySelector('.temp')
+
+const API_URL = 'http://api.openweathermap.org/data/2.5/weather'
+const API_TOKEN = 'e417df62e04d3b1b111abeab19cea714'
+
+searchButton.onclick = async () =>{
+    try{
+        if (searchInput.value === '') {
+            city.innerHTML = 'Введите название города'
+            temp.innerHTML = ''
+            return
+        }
+        const response = await fetch(`${API_URL}?appid=${API_TOKEN}&q=${searchInput.value}&lang=ru&units=metric`)
+        const data = await response.json()
+        city.innerHTML = data.name || 'Город не найден'
+        temp.innerHTML = data.main?.temp ? Math.round(data.main?.temp) + '°C' : ''
+
+        searchInput.value = ''
+    } catch(e){
+        console.log(e);
+        
+    }
+}
+
+
+
+
+
+
+
+
+
